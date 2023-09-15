@@ -21,7 +21,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         app:itemBackground="#FBC02D"
-        app:itemIconTint="@color/black"
+        app:itemIconTint="#956565"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/main_navi_menu"
         app:layout_constraintBottom_toBottomOf="parent"/>
