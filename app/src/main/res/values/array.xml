@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="news_list">
+        <item>AWS "클라우드 채택, 탄소배출량 80% 감소"</item>
+        <item>항저우 아시안게임 알리바바 클라우드로 돌아간다</item>
+        <item>LG전자, 개발자 1000명과 AI·모빌리티·클라우드 기술 공유</item>
+        <item>KT클라우드, 구글클라우드와 맞손…연결성 확장</item>
+        <item>금융위, 혁신서비스 10건 지정…클라우드 활용 SaaS 내부망 이용 등</item>
+
+
+
+    </string-array>
+</resources>

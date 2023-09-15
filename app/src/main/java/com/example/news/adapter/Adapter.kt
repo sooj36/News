@@ -1,4 +1,4 @@
-package com.example.news
+package com.example.news.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.news.R
 
 class Adapter(
     private val context: Context,

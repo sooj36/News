@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.news.ARG_PARAM1
-import com.example.news.ARG_PARAM2
+import com.example.news.adapter.Adapter
 import com.example.news.R
 import com.example.news.databinding.FragmentTitleBinding
 
@@ -18,7 +18,7 @@ import com.example.news.databinding.FragmentTitleBinding
  * Use the [Title_fragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Title_fragment : Fragment() {
+class TitleFragment : Fragment() {
 
     private lateinit var binding : FragmentTitleBinding
 
@@ -27,7 +27,7 @@ class Title_fragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_title, container, false)
+        binding = FragmentTitleBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -41,6 +41,14 @@ class Title_fragment : Fragment() {
     private fun setRecyclerView() {
         binding.titleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.titleRecyclerView.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
-        val adapter = ///어뎁터 만들고 옴
+        val adapter = Adapter(requireContext(), resources.getStringArray(R.array.news_list))
+
+        adapter.setOnItemClickListener(object  : Adapter.OnItemClickListener {
+            override fun onItemClick(article: String) {
+                val bundle = bundleOf("NewsTitle" to article)
+                findNavController().navigate(R.id.action_title_to_detail, bundle)
+            }
+        })
+        binding.titleRecyclerView.adapter = adapter
     }
 }

@@ -2,7 +2,8 @@ package com.example.news
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
+
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.news.databinding.ActivityMainBinding
 import com.example.news.fragment.KeepStateFragment
@@ -14,23 +15,26 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        setNavigation()
+//        setNavigation()
     }
 
     // Navigation 설정!
-    private fun setNavigation() {
-
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-        val navController = navHostFragment.navController
-
-        val navigator = navHostFragment?.let { KeepStateFragment(this, it.childFragmentManager, R.id.nav_host_fragment) } // 수정
-
-        navController.navigatorProvider.addNavigator(navigator)
-        navController.setGraph(R.navigation.nav_graph)
-
-        binding.mainNavi.setupWithNavController(navController)
-    }
+//    private fun setNavigation() {
+//
+//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+//        val navController = navHostFragment.navController
+//
+//
+//         // 수정
+//        val navigator = KeepStateFragment(this, navHostFragment.childFragmentManager, R.id.nav_host_fragment)
+//
+//        navController.navigatorProvider.addNavigator(navigator)
+//        navController.setGraph(R.navigation.nav_graph)
+//
+//        binding.mainNavi.setupWithNavController(navController)
+//    }
 }
 

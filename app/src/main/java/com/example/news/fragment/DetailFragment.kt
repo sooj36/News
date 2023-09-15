@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.example.news.R
 import com.example.news.databinding.FragmentDetailBinding
 
 
-class Detail_fragment : Fragment() {
+class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
     private var newsTitle : String? = null
@@ -26,7 +24,7 @@ class Detail_fragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
+        binding = FragmentDetailBinding.inflate(inflater, container, false)
 
         binding.newsTextView.text = newsTitle
 
