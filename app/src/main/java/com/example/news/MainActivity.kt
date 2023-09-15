@@ -18,23 +18,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        setNavigation()
+        setNavigation()
     }
 
     // Navigation 설정!
-//    private fun setNavigation() {
-//
-//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-//        val navController = navHostFragment.navController
-//
-//
-//         // 수정
-//        val navigator = KeepStateFragment(this, navHostFragment.childFragmentManager, R.id.nav_host_fragment)
-//
-//        navController.navigatorProvider.addNavigator(navigator)
-//        navController.setGraph(R.navigation.nav_graph)
-//
-//        binding.mainNavi.setupWithNavController(navController)
-//    }
+    private fun setNavigation() {
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+
+         // 수정
+        val navigator = KeepStateFragment(this, navHostFragment.childFragmentManager, R.id.nav_host_fragment)
+
+        navController.navigatorProvider.addNavigator(navigator)
+        navController.setGraph(R.navigation.nav_graph)
+
+        binding.mainNavi.setupWithNavController(navController)
+    }
 }
 
