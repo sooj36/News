@@ -1,4 +1,4 @@
-package com.example.news
+package com.example.news.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -8,6 +8,8 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.fragment.FragmentNavigator
 
+// fragment 전환 + 상태유지 담당
+// fragment 최초 생성 시 , 클래스를 생성 후 FragmentManager에 더해주고, 이미 생성된 fragment 보여줌
 
 @Navigator.Name("keep_state_fragment")
 class KeepStateFragment(
