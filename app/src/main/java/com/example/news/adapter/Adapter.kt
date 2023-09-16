@@ -13,7 +13,7 @@ class Adapter(
     private val list: Array<String>,
 ) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
-    interface OnItemClickListener {
+    interface OnItemClickListener { //list 클릭 시 수행할
         fun onItemClick(article : String)
     }
 
