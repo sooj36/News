@@ -13,11 +13,7 @@ import com.example.news.adapter.Adapter
 import com.example.news.R
 import com.example.news.databinding.FragmentTitleBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Title_fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class TitleFragment : Fragment() {
 
     private lateinit var binding : FragmentTitleBinding
@@ -45,8 +41,7 @@ class TitleFragment : Fragment() {
 
         adapter.setOnItemClickListener(object  : Adapter.OnItemClickListener {
             override fun onItemClick(article: String) {
-                val bundle = bundleOf("NewsTitle" to article)
-                findNavController().navigate(R.id.action_title_to_detail, bundle)
+
             }
         })
         binding.titleRecyclerView.adapter = adapter
