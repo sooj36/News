@@ -20,7 +20,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/main_navi_menu"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 

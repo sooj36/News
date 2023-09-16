@@ -14,17 +14,17 @@ import kotlin.collections.indexOf as indexOf1
 class DetailFragment : Fragment() {
 
     companion object {
-        private const val SELECTED_NEWS = "selcted_news"
+        private const val SELECTED_NEWS = "selected_news"
     }
 
     private lateinit var binding: FragmentDetailBinding
-    private var newsTitle: String? = null
+    private var selectedNews: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        newsTitle = arguments?.getString(SELECTED_NEWS)
+        selectedNews = arguments?.getString(SELECTED_NEWS)
     }
 
     override fun onCreateView(
@@ -35,25 +35,27 @@ class DetailFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_detail, container, false)
 
         //선택된 기사에 해당하는 내용 찾아 textview에 설정
-        view.findViewById<TextView>(R.id.detail).text = getArticle(SELECTED_NEWS)
+        binding.detail.text = selectedNews?.let { getArticle(it) }.toString()
 
-        return view
+        return binding.root
 
     }
 
 
-    private fun getArticle(title : String) : String {
+    private fun getArticle(title : String) : Any? {
         val titles = resources.getStringArray(R.array.news_list)
-        val article = resources.getStringArray(R.array.article_list)
+        val articles = resources.getStringArray(R.array.article_list)
 
         //title 에 해당하는 index 찾기
         val idx = titles.indexOf1(title)
 
-        if (idx == -1) {
-            return ""
-        } else {
-            return article[idx]
-        }
+
+        return if (idx != -1) {
+            articles[idx]
+        } else ({
+            ""
+        }).toString()
+
 
     }
 }
