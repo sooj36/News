@@ -23,7 +23,6 @@ class DetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         selectedNews = arguments?.getString(SELECTED_NEWS)
     }
 
@@ -32,13 +31,14 @@ class DetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle? ): View? {
         // xml 파일 연결 !
-        val view = inflater.inflate(R.layout.fragment_detail, container, false)
+        binding = FragmentDetailBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-        //선택된 기사에 해당하는 내용 찾아 textview에 설정
-        binding.detail.text = selectedNews?.let { getArticle(it) }.toString()
+        // 선택된 기사에 해당하는 textview 설정
+        val article = getArticle(selectedNews ?: "")
+        binding.detail.text = article.toString()
 
-        return binding.root
-
+        return view
     }
 
 

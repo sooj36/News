@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.news.MainActivity
 import com.example.news.adapter.Adapter
 import com.example.news.R
 import com.example.news.databinding.FragmentTitleBinding
@@ -16,34 +18,35 @@ import com.example.news.databinding.FragmentTitleBinding
 
 class TitleFragment : Fragment() {
 
-    private lateinit var binding : FragmentTitleBinding
+    private lateinit var binding: FragmentTitleBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentTitleBinding.inflate(inflater, container, false)
+        val view = inflater.inflate(R.layout.fragment_title, container, false)
+        val recyclerView: RecyclerView = view.findViewById(R.id.title_recycler_view)
 
-        return binding.root
+        val articles = resources.getStringArray(R.array.news_list)
+        val adapter = Adapter(requireContext(), articles) { news ->
+            onArticleItemClick(news)
+        }
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                requireContext(),
+                LinearLayoutManager.VERTICAL
+            )
+        )
+        recyclerView.adapter = adapter
+        return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setRecyclerView()
+    private fun onArticleItemClick(news: String) {
+        val activity = requireActivity() as MainActivity
+        activity.showDetailFragment(news)
     }
 
-    private fun setRecyclerView() {
-        binding.titleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.titleRecyclerView.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
-        val adapter = Adapter(requireContext(), resources.getStringArray(R.array.news_list))
-
-        adapter.setOnItemClickListener(object  : Adapter.OnItemClickListener {
-            override fun onItemClick(article: String) {
-
-            }
-        })
-        binding.titleRecyclerView.adapter = adapter
-    }
 }
